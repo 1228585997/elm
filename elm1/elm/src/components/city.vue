@@ -66,7 +66,7 @@
 	</div>
 </template>
 <script>
-	import headtop from './headtop'
+	import headtop from './zu/headtop.vue'
 	export default {
 		name: 'city',
 		components: {
