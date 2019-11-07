@@ -6,8 +6,8 @@ import shoplist from '../components/shoplist.vue'
 import shopsearch from '../components/shopsearch.vue'
 import order from '../components/order.vue'
 import profile from '../components/profile.vue'
+import shop from '../components/shop.vue'
 Vue.use(VueRouter)
-
 const routes = [
   {
       path: '/',
@@ -45,6 +45,18 @@ const routes = [
     path: '/profile',
     name: 'profile',
     component:profile
+  },
+  //商品计算列表
+  {
+    path: '/profile',
+    name: 'profile',
+    component:profile
+  },
+  //商品计算页面
+  {
+    path: '/shop/:id',
+    name: 'shop',
+    component:shop
   },
 ]
 

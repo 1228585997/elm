@@ -43,45 +43,49 @@
 			<div class="shop_list1_container clearfix">
 				<ul class="clearfix">
 					<li class="shop_li" v-for="item,index in shoplist" :key="index">
-						<div class="shopimg">
-							<img :src="'//elm.cangdu.org/img/'+item.image_path" alt="暂无数据,非常抱歉" class="img">
-						</div>
-						<div class="shop_right">
-							<header class="shop_right_header">
-								<h4 class="shop_title ellipsis premium">
-									<van-tag type="danger" size="medium" color="#ffd930">品牌</van-tag>
-									<span class="shop_title_text">{{item.name}}</span>
-								</h4>
-								<ul class="shop_detail_ul">
-									<li class="supports" v-for="i,index in item.supports" :key="i.id">
-										{{i.icon_name}}
-									</li>
-								</ul>
-							</header>
-							<div class="shop_rightcenter">
-								<div class="shop_rightcenterleft">
-									<div class="rating_section">
-										<van-rate v-model="value" :count="5" :size="10" :gutter="0" color="#ff9a0d"  readonly />
-										<span class="rate">{{item.rating}}</span>
-										<span class="dingdan">月售{{item.recent_order_num}}</span>
+						<router-link :to="{name:'shop',params:{id:item.id}}">
+							<div class="shopimg">
+								<img :src="'//elm.cangdu.org/img/'+item.image_path" alt="暂无数据,非常抱歉" class="img">
+							</div>
+						</router-link>
+						<router-link :to="{name:'shop',params:{id:item.id}}">
+							<div class="shop_right">
+								<header class="shop_right_header">
+									<h4 class="shop_title ellipsis premium">
+										<van-tag type="danger" size="medium" color="#ffd930">品牌</van-tag>
+										<span class="shop_title_text">{{item.name}}</span>
+									</h4>
+									<ul class="shop_detail_ul">
+										<li class="supports" v-for="i,index in item.supports" :key="i.id">
+											{{i.icon_name}}
+										</li>
+									</ul>
+								</header>
+								<div class="shop_rightcenter">
+									<div class="shop_rightcenterleft">
+										<div class="rating_section">
+											<van-rate v-model="value" :count="5" :size="10" :gutter="0" color="#ff9a0d"  readonly />
+											<span class="rate">{{item.rating}}</span>
+											<span class="dingdan">月售{{item.recent_order_num}}</span>
+										</div>
+									</div>
+									<div class="shop_rightcenterright">
+										<span class="delivery_style">{{item.delivery_mode.text}}</span>
+										<span class="delivery_right">准时达</span>
 									</div>
 								</div>
-								<div class="shop_rightcenterright">
-									<span class="delivery_style">{{item.delivery_mode.text}}</span>
-									<span class="delivery_right">准时达</span>
+								<div class="shop_rightbottom">
+									<div class="fee">
+										&yen{{item.float_minimum_order_amount}}元起送 /
+										<span>{{item.piecewise_agent_fee.tips}}</span>
+									</div>
+									<div class="distance_time">
+										<span class="distance_time1">{{item.distance}} / </span>
+										<span class="order_time">{{item.order_lead_time}}</span>
+									</div>
 								</div>
 							</div>
-							<div class="shop_rightbottom">
-								<div class="fee">
-									&yen{{item.float_minimum_order_amount}}元起送 /
-									<span>{{item.piecewise_agent_fee.tips}}</span>
-								</div>
-								<div class="distance_time">
-									<span class="distance_time1">{{item.distance}} / </span>
-									<span class="order_time">{{item.order_lead_time}}</span>
-								</div>
-							</div>
-						</div>
+						</router-link>
 					</li>
 				</ul>
 			</div>
@@ -142,11 +146,7 @@
 				// console.log(res.data)
 			})
 			// 获取商铺列表
-			this.$http.get('https://elm.cangdu.org/shopping/restaurants', {
-				params: {
-					latitude: 'this.latitude',
-					longitude: 'this.longitude'
-				}
+			this.$http.get('http://elm.cangdu.org/shopping/restaurants?latitude=32.035351&longitude=118.820363&offset=0&limit=20&extras[]=activities&keyword=&restaurant_category_id=&restaurant_category_ids[]=&order_by=&delivery_mode[]=', {
 			}).then((data) => {
 				console.log(data.data)
 				this.shoplist = data.data
@@ -523,7 +523,7 @@
 		right: 0;
 		bottom: 0;
 		width: 100%;
-		height: 100px;
+		height:100px;
 		display: flex;
 		box-shadow: 0 -0.02667rem 0.05333rem rgba(0, 0, 0, .1);
 	}
