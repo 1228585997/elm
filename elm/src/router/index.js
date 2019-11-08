@@ -6,11 +6,9 @@ import shoplist from '../components/shoplist.vue'
 import shopsearch from '../components/shopsearch.vue'
 import order from '../components/order.vue'
 import profile from '../components/profile.vue'
-<<<<<<< HEAD:elm1/elm/src/router/index.js
 import balance from '../components/balance.vue'
-=======
 import shop from '../components/shop.vue'
->>>>>>> 7b27da2157aa5ffc80f506311fd2185e56b12bb3:elm/src/router/index.js
+import download from '../components/download.vue'
 Vue.use(VueRouter)
 const routes = [
   {
@@ -50,19 +48,17 @@ const routes = [
     name: 'profile',
     component: profile
   },
-<<<<<<< HEAD:elm1/elm/src/router/index.js
   // 余额详情
   {
     path: '/balance',
     name: 'balance',
     component: balance
-  }
-=======
-  //商品计算列表
+  },
+  //下载ele
   {
-    path: '/profile',
-    name: 'profile',
-    component:profile
+    path: '/download',
+    name: 'download',
+    component: download
   },
   //商品计算页面
   {
@@ -70,7 +66,6 @@ const routes = [
     name: 'shop',
     component:shop
   },
->>>>>>> 7b27da2157aa5ffc80f506311fd2185e56b12bb3:elm/src/router/index.js
 ]
 
 const router = new VueRouter({

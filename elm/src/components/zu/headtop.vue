@@ -7,6 +7,7 @@
 		<slot name="shopsearch"></slot>
 		<slot name="order"></slot>
 		<slot name="profile"></slot>
+		<slot name="download"></slot>
 	</div>
 </template>
 
