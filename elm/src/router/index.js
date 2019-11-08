@@ -9,6 +9,10 @@ import profile from '../components/profile.vue'
 import balance from '../components/balance.vue'
 import shop from '../components/shop.vue'
 import download from '../components/download.vue'
+import login from '../components/login.vue'
+import forget from '../components/forget.vue'
+import service from  '../components/service.vue'
+import questionDetail from  '../components/questionDetail.vue'
 Vue.use(VueRouter)
 const routes = [
   {
@@ -66,10 +70,40 @@ const routes = [
     name: 'shop',
     component:shop
   },
+  // 登录
+  {
+    path: '/login',
+    name: 'login',
+    component:login
+  },
+  //修改
+  {
+    path: '/forget',
+    name: 'forget',
+    component:forget
+  },
+  //服务中心
+  {
+    path: '/service',
+    name: 'service',
+    component:service,
+	//服务中心详情页
+	children:[
+		{
+			path: 'questionDetail',
+			name: 'questionDetail',
+			component:questionDetail,
+		}
+	]
+  },
 ]
 
 const router = new VueRouter({
   routes
 })
-
+//全局导航守卫
+// router.beforeEach((to,from,next)=>{
+// 	console.log(1)
+// 	next()
+// })
 export default router

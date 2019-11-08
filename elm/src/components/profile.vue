@@ -14,7 +14,9 @@
         <div class="profile-link">
           <span class="privateImage"></span>
           <div class="user-info">
-            <h3 class="user_login">登录/注册</h3>
+            <router-link to="/login">
+				<h3 class="user_login">登录/注册</h3>
+			</router-link>
             <div class="icon-mobile-number">暂无绑定手机号</div>
           </div>
           <van-icon name="arrow" size="20px" class="arrow" />
@@ -53,7 +55,9 @@
       </div>
       <div class="profile_bottom">
         <van-cell-group class="van-cell-group">
-          <van-cell icon="apps-o" title="服务中心" is-link class="van-cell" />
+			<router-link to="/service">
+				 <van-cell icon="apps-o" title="服务中心" is-link class="van-cell" />
+			</router-link>
           <router-link to="/download">
              <van-cell icon="aim" title="下载饿了么APP" is-link class="van-cell" />
           </router-link>

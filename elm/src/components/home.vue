@@ -5,7 +5,9 @@
 				<template v-slot:home>
 					<span class="head_logo" @click="reload">ele.me</span>
 					<span class="head_login">
-						<span class="login_span">登录|注册</span>
+						<router-link to="/login">
+							<span class="login_span">登录|注册</span>
+						</router-link>
 					</span>
 				</template>
 			</headtop>
@@ -139,7 +141,6 @@
 		width: 100%;
 		background-color: #f5f5f5 !important;
 	}
-
 	.arrow {
 		color: #999;
 	}
@@ -320,5 +321,8 @@
 
 	textarea {
 		-webkit-appearance: none;
+	}
+	.login_span{
+		color:#fff;
 	}
 </style>

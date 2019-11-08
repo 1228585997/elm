@@ -8,6 +8,9 @@
 		<slot name="order"></slot>
 		<slot name="profile"></slot>
 		<slot name="download"></slot>
+		<slot name="login"></slot>
+		<slot name="forget"></slot>
+		<slot name="service"></slot>
 	</div>
 </template>
 
