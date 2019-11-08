@@ -22,12 +22,14 @@
       </div>
       <div class="info-data">
         <ul class="clearfix infolist">
-          <li class="infolist_li fl">
-            <span class="info-data-top">
-              <b class="info-data-topb">0.00</b>元
-            </span>
-            <div class="info-data-bottom">我的余额</div>
-          </li>
+          <router-link to="balance">
+            <li class="infolist_li fl">
+              <span class="info-data-top">
+                <b class="info-data-topb">0.00</b>元
+              </span>
+              <div class="info-data-bottom">我的余额</div>
+            </li>
+          </router-link>
           <li class="infolist_li fl">
             <span class="info-data-top">
               <b class="info-data-topb incolor">0</b>个
@@ -55,26 +57,19 @@
           <van-cell icon="aim" title="下载饿了么APP" is-link class="van-cell" />
         </van-cell-group>
       </div>
-      <!-- 尾部 -->
-      <div class="footer">
-        <router-view />
-        <van-tabbar v-model="active" active-color="#3190e8" inactive-color="#000">
-          <van-tabbar-item icon="share" to="/shoplist/:id">外卖</van-tabbar-item>
-          <van-tabbar-item icon="search" to="/shopsearch">搜索</van-tabbar-item>
-          <van-tabbar-item icon="balance-list-o" to="/order">订单</van-tabbar-item>
-          <van-tabbar-item icon="contact" to="/profile">我的</van-tabbar-item>
-        </van-tabbar>
-      </div>
+      <footers></footers>
     </div>
   </div>
 </template>
 
 <script>
+import footers from "./zu/footers.vue";
 import headtop from "./zu/headtop.vue";
 export default {
   name: "profile",
   components: {
-    headtop
+    headtop,
+    footers
   },
   data() {
     return {
@@ -115,6 +110,9 @@ export default {
   height: 100px;
   display: flex;
   box-shadow: 0 -0.02667rem 0.05333rem rgba(0, 0, 0, 0.1);
+}
+.van-tabbar-item__icon {
+  font-size: 50px;
 }
 
 .header_top {
@@ -233,6 +231,7 @@ export default {
   line-height: 60px;
   height: 60px;
 }
+
 .van-cell__title span {
   font-size: 24px;
   line-height: 60px;

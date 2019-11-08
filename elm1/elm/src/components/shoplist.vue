@@ -91,25 +91,18 @@
         </ul>
       </div>
     </div>
-    <!-- 尾部 -->
-    <div class="footer">
-      <router-view />
-      <van-tabbar v-model="active" active-color="#3190e8" inactive-color="#000">
-        <van-tabbar-item icon="share" to="/shoplist/:id">外卖</van-tabbar-item>
-        <van-tabbar-item icon="search" to="/shopsearch">搜索</van-tabbar-item>
-        <van-tabbar-item icon="balance-list-o" to="/order">订单</van-tabbar-item>
-        <van-tabbar-item icon="contact" to="/profile">我的</van-tabbar-item>
-      </van-tabbar>
-    </div>
+    <footers></footers>
   </div>
 </template>
 
 <script>
+import footers from './zu/footers.vue';
 import headtop from "./zu/headtop.vue";
 export default {
   name: "shoplist",
   components: {
-    headtop
+    headtop,
+    footers
   },
   data() {
     return {
