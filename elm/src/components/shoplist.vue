@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" v-loading="loading">
     <!-- 头部 -->
     <headtop>
       <template v-slot:shoplist>
@@ -10,7 +10,9 @@
           <span class="title_text ellipsis">{{cityurl}}</span>
         </div>
         <div class="head_login">
-          <span class="login_span">登录|注册</span>
+          <router-link to="/login">
+			  <span class="login_span">登录|注册</span>
+		  </router-link>
         </div>
       </template>
     </headtop>
@@ -18,11 +20,17 @@
     <nav class="msite_nav clearfix">
       <van-swipe :loop="false">
         <van-swipe-item>
+<<<<<<< HEAD
           <div class="item" v-for="(item,index) in listarr1" :key="index">
+=======
+          <div class="item" v-for="item,index in listarr1" :key="index">
+            <router-link :to="{name:'food',query:{id:item.id,title:item.title}}">
+>>>>>>> f2930b13e10442a61e87be12481f3cc86126a80d
             <div class="clearfix item1">
               <img :src="'https://fuss10.elemecdn.com'+item.image_url" alt class="img" />
               <span class="item_title">{{item.title}}</span>
             </div>
+            </router-link>
           </div>
         </van-swipe-item>
         <van-swipe-item>
@@ -116,6 +124,7 @@ export default {
   },
   data() {
     return {
+		loading:true,
       active: 0,
       value: 5,
       cityurl: "", //存放地址
@@ -136,10 +145,6 @@ export default {
     localStorage.geohash = JSON.stringify(this.geohash);
     //console.log(this.geohash)//获取经纬度
     console.log(this.$route.query);
-    //获取经纬度
-    // this.geohash = this.$route.query.geohash.split(',')
-    // this.latitude = this.$route.query.geohash.split(',')[0]
-    // this.longitude = this.$route.query.geohash.split(',')[1]
     console.log(this.latitude, this.longitude);
     // 食品分类列表
     this.$http.get(`https://elm.cangdu.org/v2/index_entry`).then(res => {
@@ -158,6 +163,11 @@ export default {
         console.log(data.data);
         this.shoplist = data.data;
       });
+  },
+  mounted(){
+	  setTimeout(()=>{
+	  		  this.loading=false
+	  },1000)
   }
 };
 </script>
@@ -211,14 +221,12 @@ export default {
   color: #fff;
   text-align: center;
 }
-
 .title_text {
   font-size: 28px;
   color: #fff;
   text-align: center;
   display: block;
 }
-
 .ellipsis {
   overflow: hidden;
   text-overflow: ellipsis;

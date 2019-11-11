@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
   <!-- 头部 -->
   <div class="header clearfix" id="head_top">
     <slot name="home"></slot>
@@ -11,6 +12,25 @@
     <slot name="discounts"></slot>
     <slot name="back"></slot>
   </div>
+=======
+	<!-- 头部 -->
+	<div class="header clearfix" id="head_top">
+		<slot name="home"></slot>
+		<slot name="citytop"></slot>
+		<slot name="shoplist"></slot>
+		<slot name="shopsearch"></slot>
+		<slot name="order"></slot>
+		<slot name="profile"></slot>
+		<slot name="download"></slot>
+<<<<<<< HEAD
+		<slot name="food"></slot>
+=======
+		<slot name="login"></slot>
+		<slot name="forget"></slot>
+		<slot name="service"></slot>
+>>>>>>> bcd0b15a434de59278dfb2b6f5636e773ec41b7e
+	</div>
+>>>>>>> f2930b13e10442a61e87be12481f3cc86126a80d
 </template>
 
 <script>

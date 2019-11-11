@@ -7,7 +7,7 @@
 					<van-icon name="arrow-left" class="arrow-left" />
 				</router-link>
 				<section class="title_head ellipsis">
-					<span class="title_text">{{cityname}}</span>
+					<span class="title_text">{{$route.params.type}}</span>
 				</section>
 				<router-link to="/">
 					<span class="change_city">切换城市</span>
@@ -75,7 +75,6 @@
 		data() {
 			return {
 				inputVaule: '', // 搜索地址
-				cityname: '', //城市名字
 				historytitle: true, // 默认显示搜索历史头部，点击搜索后隐藏
 				citylist: [], // 搜索城市列表
 				placeHistory: [], // 历史搜索记录
@@ -86,7 +85,6 @@
 		},
 		//获取城市名字
 		created() {
-			this.cityname = this.$route.params.type
 			this.id = this.$route.params.id
 			if (localStorage.placeHistory) {
 				this.listplaceHistory = JSON.parse(localStorage.placeHistory)

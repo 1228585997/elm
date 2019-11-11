@@ -3,7 +3,7 @@
     <headtop>
       <!-- 头部组件 -->
       <template v-slot:profile>
-        <router-link to="/profile">
+        <router-link to="/service">
           <van-icon name="arrow-left" class="arrow-lefts" size="20px" />
         </router-link>
         <div class="title_head ellipsis title_head1">我的余额</div>
