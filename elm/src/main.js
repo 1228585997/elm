@@ -5,7 +5,12 @@ import store from './store'
 import 'lib-flexible'
 import VueResource from 'vue-resource'
 Vue.use(VueResource)
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css'
+Vue.use(ElementUI);
 Vue.config.productionTip = false
+import Mint from 'mint-ui';
+Vue.use(Mint);
 import {
 	Button,
 	Swipe,
@@ -20,9 +25,16 @@ import {
 	 IndexBar, 
 	 IndexAnchor,
 	 Tab, Tabs,
+<<<<<<< HEAD
 	 DropdownMenu,
 	 DropdownItem,
+=======
+	 TreeSelect,
+	 PullRefresh
+>>>>>>> bcd0b15a434de59278dfb2b6f5636e773ec41b7e
 } from 'vant';
+Vue.use(PullRefresh)
+Vue.use(TreeSelect)
 Vue.use(Tab).use(Tabs);
 Vue.use(IndexBar).use(IndexAnchor);
 Vue.use(Cell).use(CellGroup);

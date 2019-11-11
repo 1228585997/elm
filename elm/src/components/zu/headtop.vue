@@ -8,7 +8,13 @@
 		<slot name="order"></slot>
 		<slot name="profile"></slot>
 		<slot name="download"></slot>
+<<<<<<< HEAD
 		<slot name="food"></slot>
+=======
+		<slot name="login"></slot>
+		<slot name="forget"></slot>
+		<slot name="service"></slot>
+>>>>>>> bcd0b15a434de59278dfb2b6f5636e773ec41b7e
 	</div>
 </template>
 
