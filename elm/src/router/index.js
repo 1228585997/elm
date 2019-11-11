@@ -9,6 +9,7 @@ import profile from '../components/profile.vue'
 import balance from '../components/balance.vue'
 import shop from '../components/shop.vue'
 import download from '../components/download.vue'
+import food from '../components/food.vue'
 Vue.use(VueRouter)
 const routes = [
   {
@@ -29,6 +30,12 @@ const routes = [
     path: '/shoplist/:id',
     name: 'shoplist',
     component: shoplist
+  },
+  //食品分类列表
+  {
+    path: '/food',
+    name: 'food',
+    component: food
   },
   // 搜索列表
   {

@@ -19,10 +19,12 @@
       <van-swipe :loop="false">
         <van-swipe-item>
           <div class="item" v-for="item,index in listarr1" :key="index">
+            <router-link :to="{name:'food',query:{id:item.id,title:item.title}}">
             <div class="clearfix item1">
               <img :src="'https://fuss10.elemecdn.com'+item.image_url" alt class="img" />
               <span class="item_title">{{item.title}}</span>
             </div>
+            </router-link>
           </div>
         </van-swipe-item>
         <van-swipe-item>

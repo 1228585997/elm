@@ -8,6 +8,7 @@
 		<slot name="order"></slot>
 		<slot name="profile"></slot>
 		<slot name="download"></slot>
+		<slot name="food"></slot>
 	</div>
 </template>
 
