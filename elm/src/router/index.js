@@ -9,23 +9,17 @@ import profile from '../components/profile.vue'
 import balance from '../components/balance.vue'
 import shop from '../components/shop.vue'
 import download from '../components/download.vue'
-<<<<<<< HEAD
 import discounts from '../components/discounts.vue'
 import total from '../components/total.vue'
 import balance_details from '../components/balance_details.vue'
 import total_details from '../components/total_details.vue'
 import shop_details from '../components/shop_details.vue'
 import member from '../components/member.vue'
-=======
-<<<<<<< HEAD
 import food from '../components/food.vue'
-=======
-import login from '../components/login.vue'
-import forget from '../components/forget.vue'
+// import login from '../components/login.vue'
+// import forget from '../components/forget.vue'
 import service from  '../components/service.vue'
 import questionDetail from  '../components/questionDetail.vue'
->>>>>>> bcd0b15a434de59278dfb2b6f5636e773ec41b7e
->>>>>>> f2930b13e10442a61e87be12481f3cc86126a80d
 Vue.use(VueRouter)
 const routes = [
   {
@@ -131,17 +125,17 @@ const routes = [
     component: shop
   },
   // 登录
-  {
-    path: '/login',
-    name: 'login',
-    component:login
-  },
-  //修改
-  {
-    path: '/forget',
-    name: 'forget',
-    component:forget
-  },
+  // {
+  //   path: '/login',
+  //   name: 'login',
+  //   component:login
+  // },
+  // //修改
+  // {
+  //   path: '/forget',
+  //   name: 'forget',
+  //   component:forget
+  // },
   //服务中心
   {
     path: '/service',

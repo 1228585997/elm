@@ -1,5 +1,4 @@
 <template>
-<<<<<<< HEAD
   <div>
     <!-- <headtop> -->
     <!-- 头部组件 -->
@@ -153,49 +152,5 @@ export default {
   color: #b0def6;
   border-bottom: 1px solid #3190e8;
 }
-=======
-	<div>
-		<div class="goback">
-			<van-tabs @click="onClick">
-			  <van-tab title="商品" line-height="50px">
-				 <div class="con clearfix">
-					 
-				 </div>
-			  </van-tab>
-			  <van-tab title="评价">内容 2</van-tab>
-			</van-tabs>
-		</div>
-		
-	</div>
-</template>
-
-<script>
-	export default{
-		name:'shop',
-		data(){
-			return{
-				active:'',
-				id:'',
-				tabPosition: 'left',
-				arr:''
-			}
-		},
-		created(){
-			this.id=this.$route.params.id
-			this.$http.get(`http://elm.cangdu.org/shopping/v2/menu?restaurant_id=${this.id}`).then((data)=>{
-				console.log(data.data);
-				this.arr=data.data
-			})
-		},
-		methods:{
-			onClick(){
-				
-			}
-		}
-	}
-</script>
-
-<style scoped>
-	/* .clearfix:after,.cle */
->>>>>>> f2930b13e10442a61e87be12481f3cc86126a80d
 </style>
+

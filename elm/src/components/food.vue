@@ -213,6 +213,7 @@ export default {
     localStorage.title = JSON.stringify(this.$route.query.title);
     console.log(this.$route.query);
     this.lbsort = JSON.parse(localStorage.title);
+    console.log(this.lbsort);
     this.$http
       .get(
         "http://elm.cangdu.org/shopping/v2/restaurant/category?latitude=31.22299&longitude=121.36025"
@@ -282,6 +283,8 @@ export default {
   width: 100%;
   height: 50px;
   line-height: 40px;
+  display: inline-block;
+  text-align: center;
 }
 
 .category_icon {

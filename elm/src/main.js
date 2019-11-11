@@ -25,13 +25,10 @@ import {
 	 IndexBar, 
 	 IndexAnchor,
 	 Tab, Tabs,
-<<<<<<< HEAD
 	 DropdownMenu,
 	 DropdownItem,
-=======
 	 TreeSelect,
 	 PullRefresh
->>>>>>> bcd0b15a434de59278dfb2b6f5636e773ec41b7e
 } from 'vant';
 Vue.use(PullRefresh)
 Vue.use(TreeSelect)

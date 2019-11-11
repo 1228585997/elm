@@ -20,12 +20,8 @@
     <nav class="msite_nav clearfix">
       <van-swipe :loop="false">
         <van-swipe-item>
-<<<<<<< HEAD
           <div class="item" v-for="(item,index) in listarr1" :key="index">
-=======
-          <div class="item" v-for="item,index in listarr1" :key="index">
             <router-link :to="{name:'food',query:{id:item.id,title:item.title}}">
->>>>>>> f2930b13e10442a61e87be12481f3cc86126a80d
             <div class="clearfix item1">
               <img :src="'https://fuss10.elemecdn.com'+item.image_url" alt class="img" />
               <span class="item_title">{{item.title}}</span>
