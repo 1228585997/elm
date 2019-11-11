@@ -9,6 +9,12 @@ import profile from '../components/profile.vue'
 import balance from '../components/balance.vue'
 import shop from '../components/shop.vue'
 import download from '../components/download.vue'
+import discounts from '../components/discounts.vue'
+import total from '../components/total.vue'
+import balance_details from '../components/balance_details.vue'
+import total_details from '../components/total_details.vue'
+import shop_details from '../components/shop_details.vue'
+import member from '../components/member.vue'
 Vue.use(VueRouter)
 const routes = [
   {
@@ -52,7 +58,48 @@ const routes = [
   {
     path: '/balance',
     name: 'balance',
-    component: balance
+    component: balance,
+    children: [
+      // 余额说明
+      {
+        path: 'balance_details',
+        name: 'balance_details',
+        component: balance_details
+      }
+    ]
+  },
+  // 我的优惠
+  {
+    path: '/discounts',
+    name: 'discounts',
+    component: discounts,
+
+  },
+  // 我的积分
+  {
+    path: '/total',
+    name: 'total',
+    component: total,
+    children: [
+      // 积分详情
+      {
+        path: 'total_details',
+        name: 'total_details',
+        component: total_details
+      }
+    ]
+  },
+  // 积分商城
+  {
+    path: '/shop_details',
+    name: 'shop_details',
+    component: shop_details
+  },
+  // 会员卡
+  {
+    path: '/member',
+    name: 'member',
+    component: member
   },
   //下载ele
   {
@@ -64,7 +111,7 @@ const routes = [
   {
     path: '/shop/:id',
     name: 'shop',
-    component:shop
+    component: shop
   },
 ]
 

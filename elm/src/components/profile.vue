@@ -30,32 +30,42 @@
               <div class="info-data-bottom">我的余额</div>
             </li>
           </router-link>
-          <li class="infolist_li fl">
-            <span class="info-data-top">
-              <b class="info-data-topb incolor">0</b>个
-            </span>
-            <div class="info-data-bottom">我的优惠</div>
-          </li>
-          <li class="infolist_li fl">
-            <span class="info-data-top">
-              <b class="info-data-topb incolor1">0</b>分
-            </span>
-            <div class="info-data-bottom">我的积分</div>
-          </li>
+          <router-link to="/discounts">
+            <li class="infolist_li fl">
+              <span class="info-data-top">
+                <b class="info-data-topb incolor">0</b>个
+              </span>
+              <div class="info-data-bottom">我的优惠</div>
+            </li>
+          </router-link>
+          <router-link to="/total">
+            <li class="infolist_li fl">
+              <span class="info-data-top">
+                <b class="info-data-topb incolor1">0</b>分
+              </span>
+              <div class="info-data-bottom">我的积分</div>
+            </li>
+          </router-link>
         </ul>
       </div>
       <div class="profile_top">
         <van-cell-group class="van-cell-group">
-          <van-cell icon="points" title="我的订单" is-link class="van-cell" />
-          <van-cell icon="gold-coin-o" title="积分商城" is-link class="van-cell" />
-          <van-cell icon="gift-o" title="饿了么会员卡" is-link class="van-cell" />
+          <router-link to="/order">
+            <van-cell icon="points" title="我的订单" is-link class="van-cell" />
+          </router-link>
+          <router-link to="/shop_details">
+            <van-cell icon="gold-coin-o" title="积分商城" is-link class="van-cell" />
+          </router-link>
+          <router-link to="/member">
+            <van-cell icon="gift-o" title="饿了么会员卡" is-link class="van-cell" />
+          </router-link>
         </van-cell-group>
       </div>
       <div class="profile_bottom">
         <van-cell-group class="van-cell-group">
           <van-cell icon="apps-o" title="服务中心" is-link class="van-cell" />
           <router-link to="/download">
-             <van-cell icon="aim" title="下载饿了么APP" is-link class="van-cell" />
+            <van-cell icon="aim" title="下载饿了么APP" is-link class="van-cell" />
           </router-link>
         </van-cell-group>
       </div>
@@ -70,8 +80,8 @@ import footers from "./zu/footers.vue";
 export default {
   name: "profile",
   components: {
-	headtop,
-	footers
+    headtop,
+    footers
   },
   data() {
     return {
@@ -99,6 +109,7 @@ export default {
   color: #fff;
   line-height: 80px;
   margin-left: 20px;
+  margin-top: 10px;
 }
 
 .van-tabbar {

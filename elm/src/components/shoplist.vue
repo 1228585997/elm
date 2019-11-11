@@ -18,7 +18,7 @@
     <nav class="msite_nav clearfix">
       <van-swipe :loop="false">
         <van-swipe-item>
-          <div class="item" v-for="item,index in listarr1" :key="index">
+          <div class="item" v-for="(item,index) in listarr1" :key="index">
             <div class="clearfix item1">
               <img :src="'https://fuss10.elemecdn.com'+item.image_url" alt class="img" />
               <span class="item_title">{{item.title}}</span>
@@ -26,7 +26,7 @@
           </div>
         </van-swipe-item>
         <van-swipe-item>
-          <div class="item" v-for="item,index in list_icon" :key="index">
+          <div class="item" v-for="(item,index) in list_icon" :key="index">
             <div class="clearfix item1">
               <img :src="'https://fuss10.elemecdn.com'+item.image_url" alt class="img" />
               <span class="item_title">{{item.title}}</span>
@@ -44,7 +44,7 @@
       <!-- 数据食品分类列表 -->
       <div class="shop_list1_container clearfix">
         <ul class="clearfix">
-          <li class="shop_li" v-for="item,index in shoplist" :key="index">
+          <li class="shop_li" v-for="(item,index) in shoplist" :key="index">
             <router-link :to="{name:'shop',params:{id:item.id}}">
               <div class="shopimg">
                 <img :src="'//elm.cangdu.org/img/'+item.image_path" alt="暂无数据,非常抱歉" class="img" />
@@ -60,8 +60,8 @@
                   <ul class="shop_detail_ul">
                     <li
                       class="supports"
-                      v-for="i,index in item.supports"
-                      :key="i.id"
+                      v-for="(i,index) in item.supports"
+                      :key="index"
                     >{{i.icon_name}}</li>
                   </ul>
                 </header>
@@ -153,7 +153,6 @@ export default {
     this.$http
       .get(
         "http://elm.cangdu.org/shopping/restaurants?latitude=32.035351&longitude=118.820363&offset=0&limit=20&extras[]=activities&keyword=&restaurant_category_id=&restaurant_category_ids[]=&order_by=&delivery_mode[]=",
-        {}
       )
       .then(data => {
         console.log(data.data);
