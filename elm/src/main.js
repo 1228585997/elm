@@ -28,8 +28,23 @@ import {
 	 DropdownMenu,
 	 DropdownItem,
 	 TreeSelect,
-	 PullRefresh
+	 PullRefresh,
+	 Switch,
+	 Uploader,
+	 Dialog,
+	 CountDown,
+	 Checkbox, CheckboxGroup,
+	 SubmitBar,
+	 RadioGroup, Radio
 } from 'vant';
+Vue.use(RadioGroup);
+Vue.use(Radio);
+Vue.use(SubmitBar)
+Vue.use(Checkbox).use(CheckboxGroup);
+Vue.use(CountDown);
+Vue.use(Dialog)
+Vue.use(Uploader)
+Vue.use(Switch)
 Vue.use(PullRefresh)
 Vue.use(TreeSelect)
 Vue.use(Tab).use(Tabs);

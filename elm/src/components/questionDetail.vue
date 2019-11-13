@@ -2,7 +2,7 @@
 	<div>
 		<headtop>
 			<template v-slot:service>
-				<router-link to="/profile">
+				<router-link to="/service">
 					<van-icon name="arrow-left" class="arrow-left" />
 				</router-link>
 				<span class="title_text server">{{title}}</span>
@@ -72,6 +72,8 @@
 		margin-top: 80px;
 		padding: 0 20px;
 		color: #666;
+		max-height:1000px;
+		overflow:auto;
 		padding-bottom: 2rem;
 	}
 </style>

@@ -14,9 +14,6 @@
 				</router-link>
 			</template>
 		</headtop>
-		<!-- <div class="header clearfix" id="head_top">
-			
-		</div> -->
 		<!-- 搜索 -->
 		<form action="" class="city_form">
 			<div class="citysearch">
@@ -33,8 +30,6 @@
 				<h4 class="pois_name ellipsis">
 					<router-link :to="{name:'shoplist',query:{address:item.address,geohash:item.geohash}}">
 						{{item.name}}
-					</router-link>
-					{{item.name}}
 					</router-link>
 				</h4>
 				<p class="pois_address ellipsis">

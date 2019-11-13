@@ -12,14 +12,17 @@
       </headtop>
       <div class="profile-number">
         <div class="profile-link">
-          <span class="privateImage"></span>
+          <span class="privateImage" v-if="urlimg">
+			  <img :src="urlimg" alt="" style="width:100%;height:100%;border-radius:50%;">
+		  </span>
           <div class="user-info">
-            <router-link to="/login">
-				<h3 class="user_login">登录/注册</h3>
-			</router-link>
+				<h3 class="user_login" v-show="index=0" @click="login">登录/注册</h3>
+				<h3 class="user_login" v-show="index=1" @click="go">{{username}}</h3>
             <div class="icon-mobile-number">暂无绑定手机号</div>
           </div>
-          <van-icon name="arrow" size="20px" class="arrow" />
+		  <router-link to="/login">
+			   <van-icon name="arrow" size="20px" class="arrow" />
+		  </router-link>
         </div>
       </div>
       <div class="info-data">
@@ -35,7 +38,7 @@
           <router-link to="/discounts">
             <li class="infolist_li fl">
               <span class="info-data-top">
-                <b class="info-data-topb incolor">0</b>个
+                <b class="info-data-topb incolor">3</b>个
               </span>
               <div class="info-data-bottom">我的优惠</div>
             </li>
@@ -90,8 +93,30 @@ export default {
   data() {
     return {
       active: 3,
-      selected: ""
-    };
+      selected: "",
+	  username:'',
+	  index:'',
+	  urlimg:''
+    }
+  },
+  updated(){
+	  this.$nextTick(()=>{
+	  		 this.urlimg=JSON.parse(localStorage.urlimg)
+	  })
+  },
+  mounted(){
+		  setTimeout(()=>{
+			  this.username=JSON.parse(localStorage.username)
+			  this.idnex=localStorage.index
+		  },1000)
+  },
+  methods:{
+	  go(){
+		  location.href=`#/profile/info`
+	  },
+	  login(){
+		  location.href=`#/login`
+	  }
   }
 };
 </script>
@@ -119,7 +144,7 @@ export default {
 .van-tabbar {
   background-color: #fff;
   position: fixed;
-  z-index: 100;
+  z-index:99;
   left: 0;
   right: 0;
   bottom: 0;

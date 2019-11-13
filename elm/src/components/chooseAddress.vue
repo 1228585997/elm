@@ -1,0 +1,79 @@
+<template>
+  <div class="box">
+    <headtop>
+      <template v-slot:chooseAddress>
+        <router-link to="/confirmOrder">
+          <van-icon name="arrow-left" class="left" />
+        </router-link>
+        <span class="head_logo">选择地址</span>
+      </template>
+    </headtop>
+    <router-link to="/confirmOrder/chooseAddress/addAddress">
+      <div class="newAddress">
+        <img
+          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAABCFJREFUWAnNmUtsU0cUhs9cQkKCAwgJpxgJqWqXEQS84CHaIpZsKAhKu2JNUwISsAWFLSBBxGPNihYqqmxYIqCIx8I8qi5bIVXCYLdSW2ISHIiH84091sW5wQ8w10e69r3jmTnfnczj/CdGWrT0WO6zkpVt2jwt1qbEmJTec2FZLctqWVbvM4GR8czIwJ/ulyY/TDP1N56fSE5NT/5gxG63VgabaWuM/G7F/NLb3Xfm9t7+fKNtGwLcfDafeP7aHrQih3RkEnTevyCwX37aY9av7JZP+ufJsoWBu7SO/POiJH/r9WxiRu7+NS03HxftxMtS2ZcxBb05sajLnLw+nCzUA60LuHYst0NH65yCDdDZls8XyLer+2TNivkyr27rsvsZpX7w5JX8+GhSrv3xslxoTE5H9fv7IwNXygXRn3O6sNaa9Fj+iPZ9VOHMUKpbDmxKyKrl86N7arD0t6ev5NStgjzMTovOUasAo5mR5DGj91FdRAJuuGR7i9n8BSt2VxAYe/CLhPluqC+qfctlFx9OyslfC7ZUsjqQ5nJPKrnnzjdmqrbDoLaAkfNwiZ7Ant225IPD4ZMXpm98MBDOp/qu5ZkFWP6z2l00vLB7qVmni6BdRt/48JD4rvX1FnFlQfys+5Z7u3bChUHu6UofHv/P6r6q01J2hhdOdQTZSiqr1TDnWoFbezonXM0avvDJYoQBFt9HFZB9jq2E1fqhF4R39q5vfOIbBsdSqewAOSF0dA9RxlYSl3nfsMAEhwMsFqf2KXmCTfh997n3eTl8wwALR2oV0JrS1zxwQsRtnoHzHpaAqEQn5iBnK8dX3AYDLDDBFlRCJvlKD/5Gz9Z2vgQMsOADNuZgmodWthXatcNCLOlAJ6QLMgmZOsWqLMoWVCJhF8t1CiCxpTON0rv0xo1gtTCCstnTodH69/e7EHOWxxBLSoMpcXGY+5hVNZ4CzwJblwY4TxWxnzB95ZLoeTjXm9bi+5FrtH5te/8MCwYbiwTl5TQE351g6BlnysYicYAInE6xKouysVwygBGTdYqhBCuWUckh4zzcUGmI+orbYECmwgFbgOJHVKNbkYZxGwywwASb2xFR/IChW+M2z+CZHCDpCF0sBUQ1ujUuw7cT9srimBTEAZIr0fDhBGCI6rjM+4bF528cIEDkSnQUcyh+RPXHNnxWsg05x1IBcHGXh+lo2QkkelSJR0lHHL76v338b/s3b3zgq5wCkdGwJobprRGkwCWNTud/Ih2B4j++dXFLGpm+6hmHA3CFom4rmp/J7E/urk0iVeeg74wKJHJoQEMUfzvmJH3St4dzPiMyXLNG0IN2dPrNQ/LdsQnMMORcKWDUFwInnAKmHeGSTwEzzzjn25YCDoOSjiALgdBHt4Z/q3fP2dq2JHqU84/1b4g3B4s+pKLE0ioAAAAASUVORK5CYII="
+          alt
+        />
+        <p>新增收货地址</p>
+      </div>
+    </router-link>
+    <router-view></router-view>
+  </div>
+</template>
+
+<script>
+import headtop from "./zu/headtop.vue";
+export default {
+  name: "chooseAddress",
+  components: {
+    headtop
+  }
+};
+</script>
+
+<style scoped>
+.box {
+  width: 100%;
+  height: 120%;
+  background: #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+.left {
+  position: absolute;
+  top: 17px;
+  left: 5px;
+  font-size: 40px;
+  color: #fff;
+  font-weight: bold;
+}
+.head_logo {
+  margin-left: 35%;
+  width: 100%;
+  font-size: 30px;
+  font-weight: bold;
+}
+.newAddress {
+  width: 100%;
+  height: 100px;
+  position: absolute;
+  bottom: 18%;
+  display: inline-block;
+  text-align: center;
+}
+.newAddress img {
+  width: 50px;
+  height: 50px;
+  color: #3190e8;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+.newAddress p {
+  display: inline-block;
+  line-height: 100px;
+  color: #3190e8;
+  font-size: 30px;
+}
+</style>

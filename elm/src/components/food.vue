@@ -15,17 +15,22 @@
     <div class="sort_container">
       <div class="sort_item_border">
         <div class="sort_item_border_bottom">
-        <div v-for="(i,index) in arr1" :key="index" @click="type=index" class="category_title">{{i}}</div>
+          <div
+            v-for="(i,index) in arr1"
+            :key="index"
+            @click="type=index"
+            class="category_title"
+          >{{i}}</div>
         </div>
         <!-- 分类 -->
         <div v-if="type==0">
-          <div class="imgicon">
-            <div v-for="(i,index) in imgicon" :key="index" class="smallimg">
-              <img :src="i" class="category_icon" />
-            </div>
-          </div>
           <div v-for="(i,item) in arr" class="category_container" :key="item">
-            <div class="category_left" @click="types=item">
+            <div class="imgicon">
+              <div v-for="(i,index) in imgicon" :key="index" class="smallimg">
+                <img :src="i" class="category_icon" />
+              </div>
+            </div>
+            <div class="category_left" @click="types=item" :class="types==item?'active':''">
               <div class="category_name">{{i.name}}</div>
               <div class="category_gt">></div>
               <div class="category_count">
@@ -48,7 +53,7 @@
         <!-- 排序 -->
         <div v-else-if="type==1">
           <div class="svg_icon">
-            <div v-for="i in svg_icon">
+            <div v-for="(i,index) in svg_icon" :key="index">
               <svg class="icon svg_iconfont" aria-hidden="true">
                 <use :xlink:href="i" />
               </svg>
@@ -63,20 +68,27 @@
         <!-- 筛选 -->
         <div v-else>
           <div class="filter_container">
-            <h5 class="filter_h5">配送方式</h5>
-            <span class="filter_li">蜂鸟专送</span>
-            <h5 class="filter_h5">商家属性(可以多选)</h5>
-            <div v-for="i in sort_detail_type">
-              <div class="sort_detail">
-                <!-- {{i.description}}支付方式 -->
-                
-                <span :style="[{color:'#'+i.icon_color},{border:'#'+i.icon_color+' 1px'+ ' solid'}]" class="sort_color">{{i.icon_name}}</span>
-                <span class="sort_name">{{i.name}}</span>
+            <div class="filter-top">
+              <h5 class="filter_h5">配送方式</h5>
+              <span class="filter_li">蜂鸟专送</span>
+            </div>
+            <div class="filter-center">
+              <h5 class="filter_h5">商家属性(可以多选)</h5>
+              <div v-for="(i,index) in sort_detail_type" :key="index">
+                <div class="sort_detail">
+                  <span
+                    :style="[{color:'#'+i.icon_color},{border:'#'+i.icon_color+' 1px'+ ' solid'}]"
+                    class="sort_color"
+                  >{{i.icon_name}}</span>
+                  <span class="sort_name">{{i.name}}</span>
+                </div>
               </div>
             </div>
-            <div class="sort_qq">
-              <span>清空</span>
-              <span>确定</span>
+            <div class="filter-bottom">
+              <div class="sort_button">
+                <span>清空</span>
+                <span>确定</span>
+              </div>
             </div>
           </div>
         </div>
@@ -87,10 +99,14 @@
       <!-- 数据食品分类列表 -->
       <div class="shop_list1_container clearfix">
         <ul class="clearfix">
-          <li class="shop_li" v-for="(item,index) in foodlist" :key="index">
+          <li v-for="(item,index) in foodlist" :key="index" style="overflow:hidden;">
             <router-link :to="{name:'shop',params:{id:item.id}}">
-              <div class="shopimg">
-                <img :src="'//elm.cangdu.org/img/'+item.image_path" alt="暂无数据,非常抱歉" class="img" />
+              <div class="shop-left">
+                <img
+                  :src="'//elm.cangdu.org/img/'+item.image_path"
+                  alt="暂无数据,非常抱歉"
+                  style="width:100%;"
+                />
               </div>
             </router-link>
             <router-link :to="{name:'shop',params:{id:item.id}}">
@@ -103,8 +119,8 @@
                   <ul class="shop_detail_ul">
                     <li
                       class="supports"
-                      v-for="i,index in item.supports"
-                      :key="i.id"
+                      v-for="(i,index) in item.supports"
+                      :key="index"
                     >{{i.icon_name}}</li>
                   </ul>
                 </header>
@@ -120,11 +136,11 @@
                         readonly
                       />
                       <span class="rate">{{item.rating}}</span>
-                      <span class="dingdan">月售{{item.recent_order_num}}</span>
+                      <span class="dingdan">月售{{item.recent_order_num?item.recent_order_num:0}}</span>
                     </div>
                   </div>
                   <div class="shop_rightcenterright">
-                    <!-- <span class="delivery_style">{{item.delivery_mode.text}}</span> -->
+                   <!-- <span class="delivery_style">{{item.delivery_mode.text?item.delivery_mode.text:''}}</span> -->
                     <span class="delivery_right">准时达</span>
                   </div>
                 </div>
@@ -256,10 +272,10 @@ export default {
   width: 100%;
   overflow: hidden;
 }
-.sort_item_border_bottom{
-  border-bottom:1px #ccc solid;
-  height:70px;
-  line-height:70px;
+.sort_item_border_bottom {
+  border-bottom: 1px #ccc solid;
+  height: 70px;
+  line-height: 70px;
 }
 .category_title {
   width: 33.3%;
@@ -269,8 +285,7 @@ export default {
   line-height: 60px;
 }
 .category_container {
-  width: 90%;
-  margin-left: 10%;
+  width: 100%;
   overflow: hidden;
 }
 .imgicon {
@@ -290,40 +305,46 @@ export default {
 .category_icon {
   width: 30px;
   height: 30px;
+  margin: 13px 40px 0 20px;
 }
 .category_left {
-  width: 40%;
+  width: 50%;
   float: left;
   box-sizing: border-box;
   overflow: hidden;
   line-height: 40px;
+  background: #f5f5f5;
 }
-
+.active {
+  background: #fff;
+}
 .category_name {
   float: left;
   line-height: 40px;
+  margin-left: 70px;
 }
 .category_count {
   float: right;
 }
 .category_span {
-  padding-left: 5px;
-  padding-right: 5px;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  border-radius: 16px;
+  padding: 0px 4px;
+  margin: 5px 4px 5px 0px;
+  border-radius: 15px;
   background: #ccc;
   float: right;
-  margin-right: 4px;
   color: #fff;
+  font-size: 16px;
 }
 .category_gt {
   float: right;
+  margin-left: 10px;
+  margin-right: 15px;
 }
 .category_right {
   width: 50%;
   float: left;
   overflow: hidden;
+  padding-left: 15px;
 }
 .category_right_name {
   float: left;
@@ -368,72 +389,84 @@ export default {
   float: left;
   width: 80%;
 }
-.filter_li{
+.filter_li {
   display: block;
-  width:140px;
-  color:#000;
-  height:50px;
-  line-height:50px;
-  text-align:center;
-  border:1px #ccc solid;
+  width: 140px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  border: 1px #d6cfcf solid;
   box-sizing: border-box;
-  border-radius: 10px;
+  color: #333;
+  font-size: 15px;
 }
-.filter_container{
-  width:90%;
+.filter_container {
+  width: 100%;
   overflow: hidden;
-  margin:0 auto;
+  margin: 0 auto;
 }
-.filter_h5{
-  line-height:60px;
+.filter-top {
+  width: 100%;
+  height: 110px;
+  padding-left: 30px;
 }
-.sort_detail{
-  float:left;
-  width:28%;
-  margin-right:5%;
-  height:50px;
-  border:1px #ccc solid;
-  margin-bottom:8px;
+.filter-center {
+  width: 100%;
+  height: 210px;
+  padding-left: 30px;
 }
-.sort_color{
+
+.filter_h5 {
+  line-height: 60px;
+}
+.sort_detail {
+  float: left;
+  width: 30%;
+  margin-right: 3%;
+  border: 1px #e7d4d4 solid;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+.sort_color {
   display: inline-block;
-  border-radius: 4px;
-  width:50px;
-  height:50px;
-  line-height:50px;
-  text-align:center;
-}
-.sort_name{
-  display: inline-block;
-}
-.sort_qq{
-  width:100%;
-  height:80px;
-  margin-top:110px;
-  padding-top:10px;
-  padding-bottom:10px;
-  background:#ccc;
-  box-sizing: border-box;
-   margin-bottom:6px;
-}
-.sort_qq span{
-  display: inline-block;
-  width:40%;
-  background-color:#fff;
-  height:60px;
+  padding: 0px 5px;
+  line-height: 30px;
+  text-align: center;
+  margin-right: 10px;
+  font-size: 18px;
   border-radius: 6px;
-  border:1px #ccc solid;
-  margin-left:5%;
-  margin-right:5%;
-  text-align:center;
-  line-height:60px;
-  color:#000;
- 
+}
+.sort_name {
+  display: inline-block;
+  color: #333;
+  font-size: 16px;
+}
+.filter-bottom {
+  width: 100%;
+  height: 100px;
+  background: #f1f1f1;
+}
+.sort_button span {
+  display: inline-block;
+  width: 40%;
+  background-color: #fff;
+  border-radius: 6px;
+  margin: 15px 5%;
+  text-align: center;
+  line-height: 70px;
+  color: #000;
+  font-size: 24px;
+  font-weight: normal;
+}
+.button-active {
+  background-color: #56d176;
 }
 .shop_list_container {
+  margin-top: 30px;
   border-top: 1px solid #e4e4e4;
   background-color: #fff;
 }
+
 .shop-o {
   color: #999;
   margin-left: 10px;
@@ -457,26 +490,21 @@ export default {
   display: flex;
   border-bottom: 1px solid #f1f1f1;
   padding: 20px 15px;
-}
-
-.shopimg {
-  width: 100px;
-  height: 100px;
-  display: block;
-  margin-right: 10px;
-}
-
-.shopimg .img {
   width: 100%;
-  height: 100%;
-  vertical-align: middle;
 }
 
+.shop-left {
+  width: 20%;
+  float: left;
+  margin-right: 2%;
+  padding: 10px;
+}
 .shop_right {
-  ms-flex: auto;
-  flex: auto;
+  width: 75%;
+  float: left;
+  padding-right: 30px;
+  margin-top: 10px;
 }
-
 .shop_right_header {
   display: -ms-flexbox;
   display: flex;
@@ -613,5 +641,18 @@ export default {
 
 .order_time {
   color: #3190e8;
+}
+
+.van-tabbar {
+  background-color: #fff;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  box-shadow: 0 -0.02667rem 0.05333rem rgba(0, 0, 0, 0.1);
 }
 </style>

@@ -19,8 +19,10 @@
 				</div>
 				<!-- 定位城市 -->
 				<div class="guess_city clearfix">
-					<span class="cityspan" v-if="poscity">{{poscity}}</span>
-					<van-icon name="arrow" class="arrow" size="20px" />
+					<span class="cityspan cityspan1" v-if="poscity">{{poscity}}</span>
+					<div class="van-icontext">
+						<!-- <van-icon name="arrow" class="arrow" size="20px" /> -->
+					</div>
 				</div>
 			</nav>
 			<!-- 热门城市列表-->
@@ -134,7 +136,6 @@
 		height: auto;
 		background-color: #f5f5f5 !important;
 	}
-
 	body,
 	html {
 		height: 100%;
@@ -144,14 +145,16 @@
 	.arrow {
 		color: #999;
 	}
-
 	.city_nav {
 		padding-top: 80px;
 		border-top: 1px solid #e4e4e4;
 		background-color: #fff;
 		margin-bottom: 20px;
 	}
-
+	.cityspan1{
+		position:relative;
+		left:-170px;
+	}
 	.city_tip {
 		display: -ms-flexbox;
 		display: flex;

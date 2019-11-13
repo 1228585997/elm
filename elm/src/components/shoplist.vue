@@ -11,8 +11,8 @@
         </div>
         <div class="head_login">
           <router-link to="/login">
-			  <span class="login_span">登录|注册</span>
-		  </router-link>
+            <span class="login_span">登录|注册</span>
+          </router-link>
         </div>
       </template>
     </headtop>
@@ -22,19 +22,21 @@
         <van-swipe-item>
           <div class="item" v-for="(item,index) in listarr1" :key="index">
             <router-link :to="{name:'food',query:{id:item.id,title:item.title}}">
-            <div class="clearfix item1">
-              <img :src="'https://fuss10.elemecdn.com'+item.image_url" alt class="img" />
-              <span class="item_title">{{item.title}}</span>
-            </div>
+              <div class="clearfix item1">
+                <img :src="'https://fuss10.elemecdn.com'+item.image_url" alt class="img" />
+                <span class="item_title">{{item.title}}</span>
+              </div>
             </router-link>
           </div>
         </van-swipe-item>
         <van-swipe-item>
           <div class="item" v-for="(item,index) in list_icon" :key="index">
-            <div class="clearfix item1">
-              <img :src="'https://fuss10.elemecdn.com'+item.image_url" alt class="img" />
-              <span class="item_title">{{item.title}}</span>
-            </div>
+            <router-link :to="{name:'food',query:{id:item.id,title:item.title}}">
+              <div class="clearfix item1">
+                <img :src="'https://fuss10.elemecdn.com'+item.image_url" alt class="img" />
+                <span class="item_title">{{item.title}}</span>
+              </div>
+            </router-link>
           </div>
         </van-swipe-item>
       </van-swipe>
@@ -48,14 +50,18 @@
       <!-- 数据食品分类列表 -->
       <div class="shop_list1_container clearfix">
         <ul class="clearfix">
-          <li class="shop_li" v-for="(item,index) in shoplist" :key="index">
+          <li v-for="(item,index) in shoplist" :key="index" style="overflow:hidden;">
             <router-link :to="{name:'shop',params:{id:item.id}}">
-              <div class="shopimg">
-                <img :src="'//elm.cangdu.org/img/'+item.image_path" alt="暂无数据,非常抱歉" class="img" />
+              <div class="shop-left">
+                <img
+                  :src="'//elm.cangdu.org/img/'+item.image_path"
+                  alt="暂无数据,非常抱歉"
+                  style="width:100%;"
+                />
               </div>
             </router-link>
             <router-link :to="{name:'shop',params:{id:item.id}}">
-              <div class="shop_right">
+              <div class="shop_right" style="float:left;width:75%;">
                 <header class="shop_right_header">
                   <h4 class="shop_title ellipsis premium">
                     <van-tag type="danger" size="medium" color="#ffd930">品牌</van-tag>
@@ -120,7 +126,7 @@ export default {
   },
   data() {
     return {
-		loading:true,
+      loading: true,
       active: 0,
       value: 5,
       cityurl: "", //存放地址
@@ -153,17 +159,17 @@ export default {
     // 获取商铺列表
     this.$http
       .get(
-        "http://elm.cangdu.org/shopping/restaurants?latitude=32.035351&longitude=118.820363&offset=0&limit=20&extras[]=activities&keyword=&restaurant_category_id=&restaurant_category_ids[]=&order_by=&delivery_mode[]=",
+        "http://elm.cangdu.org/shopping/restaurants?latitude=32.035351&longitude=118.820363&offset=0&limit=20&extras[]=activities&keyword=&restaurant_category_id=&restaurant_category_ids[]=&order_by=&delivery_mode[]="
       )
       .then(data => {
         console.log(data.data);
         this.shoplist = data.data;
       });
   },
-  mounted(){
-	  setTimeout(()=>{
-	  		  this.loading=false
-	  },1000)
+  mounted() {
+    setTimeout(() => {
+      this.loading = false;
+    }, 1000);
   }
 };
 </script>
@@ -366,26 +372,19 @@ figcaption {
   display: flex;
   border-bottom: 1px solid #f1f1f1;
   padding: 20px 15px;
-}
-
-.shopimg {
-  width: 100px;
-  height: 100px;
-  display: block;
-  margin-right: 10px;
-}
-
-.shopimg .img {
   width: 100%;
-  height: 100%;
-  vertical-align: middle;
 }
 
-.shop_right {
-  ms-flex: auto;
-  flex: auto;
+.shop-left {
+  width: 20%;
+  float: left;
+  margin-right: 2%;
+  padding: 10px;
 }
-
+.shop-right {
+  width: 75%;
+  float: left;
+}
 .shop_right_header {
   display: -ms-flexbox;
   display: flex;
