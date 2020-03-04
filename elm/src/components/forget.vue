@@ -82,6 +82,8 @@
 					alert('请输入验证码')
 					return;
 				}else{
+					alert('修改成功')
+					localStorage.username=this.username
 					console.log('修改成功')
 				}
 			}

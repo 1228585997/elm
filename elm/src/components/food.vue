@@ -3,9 +3,9 @@
     <!-- 头部 -->
     <headtop>
       <template v-slot:food>
-        <router-link to="/shoplist/:id">
-          <van-icon name="arrow-left" class="arrow-left" />
-        </router-link>
+
+          <van-icon name="arrow-left" class="arrow-left" @click="$router.go(-1)"/>
+  
         <section class="title_head ellipsis">
           <span class="title_text">{{lbsort}}</span>
         </section>
@@ -15,15 +15,20 @@
     <div class="sort_container">
       <div class="sort_item_border">
         <div class="sort_item_border_bottom">
-          <div
+          <!-- <div
             v-for="(i,index) in arr1"
-            :key="index"
+            :key="index" v-bind:class="{active:i.content}"
             @click="type=index"
             class="category_title"
-          >{{i}}</div>
+          >{{i.title}}</div>-->
+          
+          <div class="category_title" @click="open=!open">分类</div>
+          <div class="category_title" @click="open1=!open1">排序</div>
+          <div class="category_title" @click="open2=!open2">筛选</div>
         </div>
-        <!-- 分类 -->
-        <div v-if="type==0">
+        <!--分类 -->
+        <div v-if="open" class="a1">
+          <div>
           <div v-for="(i,item) in arr" class="category_container" :key="item">
             <div class="imgicon">
               <div v-for="(i,index) in imgicon" :key="index" class="smallimg">
@@ -49,9 +54,10 @@
               </div>
             </div>
           </div>
+          </div>
         </div>
         <!-- 排序 -->
-        <div v-else-if="type==1">
+        <div v-else-if="open1" class="a1">
           <div class="svg_icon">
             <div v-for="(i,index) in svg_icon" :key="index">
               <svg class="icon svg_iconfont" aria-hidden="true">
@@ -66,7 +72,7 @@
           </div>
         </div>
         <!-- 筛选 -->
-        <div v-else>
+        <div v-else-if="open2" class="a1">
           <div class="filter_container">
             <div class="filter-top">
               <h5 class="filter_h5">配送方式</h5>
@@ -87,7 +93,7 @@
             <div class="filter-bottom">
               <div class="sort_button">
                 <span>清空</span>
-                <span>确定</span>
+                <span class="queren" @click="btn">确定</span>
               </div>
             </div>
           </div>
@@ -95,7 +101,7 @@
       </div>
     </div>
     <!-- 食品分类列表 -->
-    <div class="shop_list_container clearfix">
+    <div class=" shop_list_container1 clearfix">
       <!-- 数据食品分类列表 -->
       <div class="shop_list1_container clearfix">
         <ul class="clearfix">
@@ -120,7 +126,7 @@
                     <li
                       class="supports"
                       v-for="(i,index) in item.supports"
-                      :key="index"
+                      :key="index" 
                     >{{i.icon_name}}</li>
                   </ul>
                 </header>
@@ -140,7 +146,7 @@
                     </div>
                   </div>
                   <div class="shop_rightcenterright">
-                   <!-- <span class="delivery_style">{{item.delivery_mode.text?item.delivery_mode.text:''}}</span> -->
+                    <!-- <span class="delivery_style">{{item.delivery_mode.text?item.delivery_mode.text:''}}</span> -->
                     <span class="delivery_right">准时达</span>
                   </div>
                 </div>
@@ -171,13 +177,16 @@ export default {
   },
   data() {
     return {
+		z_index:0,
       lbsort: "", //轮播食品分类名字
       arr: "", //分类名字
       type: 0,
       types: 0,
       a: "",
       b: "",
-      arr1: ["分类", "排序", "筛选"],
+      open:false,
+      open1:false,
+      open2:false,
       arr_sort: [
         { icon: "0", title: "智能排序" },
         { icon: "5", title: "距离最近" },
@@ -223,7 +232,10 @@ export default {
           console.log(data.data);
           this.foodlist = data.data;
         });
-    }
+    },
+	btn(){
+		alert('点击确认了')
+	}
   },
   created() {
     localStorage.title = JSON.stringify(this.$route.query.title);
@@ -263,19 +275,41 @@ export default {
   margin: 0;
   padding: 0;
 }
+.active1{
+	background: red;
+}
 .sort_container {
   margin-top: 80px;
   position: relative;
   background: #fff;
 }
+.queren{
+	background:#56d176 !important;
+	    color: #fff !important;
+
+}
 .sort_item_border {
   width: 100%;
-  overflow: hidden;
+  position: relative;
+}
+.a1{
+  position: absolute;
+  z-index:999;
+  min-height:300px;
+  width:100%;
+  top:70px;
+  background: #fff;
+  
 }
 .sort_item_border_bottom {
   border-bottom: 1px #ccc solid;
-  height: 70px;
-  line-height: 70px;
+  /* height: 70px; */
+  /* line-height: 70px; */
+}
+.shop_list_container1{
+  box-sizing: border-box;
+    border-top: 1px solid #e4e4e4;
+    background-color: #fff;
 }
 .category_title {
   width: 33.3%;

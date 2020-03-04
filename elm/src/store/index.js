@@ -7,8 +7,12 @@ export default new Vuex.Store({
   state: {
 	  title:'' ,//服务中心
 	  text:'',
-	 orderList:[]
+	 orderList:[],
+	 name:'',
+	 addname:'' ,//add/addDetail的name
+	 dataj:''
   },
+  //计算价钱
   getters:{
     totalPrice(state) {
       if(state.orderList == '') {
@@ -34,6 +38,15 @@ export default new Vuex.Store({
     },
     addOrder(state,item){
       state.orderList=item;
-    }
-  },
+    },
+	dataname(state,item){
+		state.name=item
+	},
+	adddata(state,v){
+		state.addname=v
+	},
+	dataj(state,item){
+		state.dataj=item
+	}
+  }
 })

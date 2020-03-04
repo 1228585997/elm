@@ -20,7 +20,6 @@
     </div>
     <div class="hongbao_container">
       <!-- 红包 -->
-
       <div v-if="index==0">
         <div class="hongbao_bigc">
           <div class="hongbao_title">

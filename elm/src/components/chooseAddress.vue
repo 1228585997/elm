@@ -8,6 +8,12 @@
         <span class="head_logo">选择地址</span>
       </template>
     </headtop>
+	<div style="padding-top:50px;max-height:800px;overflow:auto;">
+		<van-cell-group v-for="item,index in arr">
+		  <van-cell :title="item.name" :value="item.address_detail" :label="item.phone" @click="go(item)" style="line-height: 30px;font-size: 16px;padding-left: 20px;"/>
+		  <div style="line-height: 30px;padding-left: 20px;font-size: 16px;">地址:{{item.address}}</div>
+		</van-cell-group>'
+	</div>
     <router-link to="/confirmOrder/chooseAddress/addAddress">
       <div class="newAddress">
         <img
@@ -27,6 +33,23 @@ export default {
   name: "chooseAddress",
   components: {
     headtop
+  },
+  data(){
+	  return{
+		  arr:[]
+	  }
+  },
+  mounted(){
+	  this.$http.get('http://elm.cangdu.org/v1/users/44104/addresses').then((data) => {
+	      this.arr = data.data
+	      console.log(data.data)
+	     })
+  },
+  methods:{
+	  go(data){
+		  this.$store.commit('dataj',data)
+			location.href=`#/confirmOrder`
+	  }
   }
 };
 </script>
@@ -34,9 +57,9 @@ export default {
 <style scoped>
 .box {
   width: 100%;
-  height: 120%;
+  height: 100%;
   background: #fff;
-  position: absolute;
+  position:fixed;
   top: 0;
   left: 0;
   z-index: 999;
@@ -59,13 +82,13 @@ export default {
   width: 100%;
   height: 100px;
   position: absolute;
-  bottom: 18%;
+  bottom: 2%;
   display: inline-block;
   text-align: center;
 }
 .newAddress img {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   color: #3190e8;
   margin-right: 10px;
   vertical-align: middle;

@@ -63,7 +63,7 @@
 			}
 		},
 		watch: {
-			checked(v) {
+			checked(v){
 				if (v == false) {
 					this.$refs.item.type = 'password'
 				} else if (v == true) {

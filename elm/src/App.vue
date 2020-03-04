@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-	<!-- <keep-alive> -->
+	<transition>
 		<router-view></router-view>
-	<!-- </keep-alive> -->
+	</transition>
   </div>
 </template>
 
@@ -16,6 +16,22 @@
 	margin: 0;
 	padding: 0;
 	list-style: none;
+	-webkit-user-select:none;
 	text-decoration:none;
 }
+.v-enter{
+		opacity: 0;
+		transform: translateX(100%);
+
+	}
+	.v-leave-to{
+		opacity: 0;
+		transform: translateX(-100%);
+		position: absolute;
+	}
+
+	 .v-enter-active,
+	 .v-leave-active{
+	 	transition:all 0.5s ease;
+	 }
 </style>

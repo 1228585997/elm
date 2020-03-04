@@ -54,7 +54,9 @@
 				</router-link>
 			</div>
 			<div class="exitlogin" @click="exit">退出登录</div>
-			<router-view></router-view>
+			<transition name="router-slid" mode="out-in">
+			    <router-view></router-view>
+			</transition>
 		</div>
 	</div>
 </template>
@@ -74,7 +76,9 @@
 			}
 		},
 		created(){
-			this.username=JSON.parse(localStorage.username)
+			if(this.username){
+				this.username=JSON.parse(localStorage.username)
+			}
 		},
 		watch:{
 			fileList(a){
@@ -102,6 +106,9 @@
 				}).catch(() => {
 				  console.log('取消了')
 				});
+			},
+			img(v){
+				console.log(v)
 			}
 		}
 	}
@@ -204,5 +211,12 @@
 		    background: #d8584a;
 		    font-size:24px;
 		    color: #fff;
+	}
+	.router-slid-enter-active, .router-slid-leave-active {
+	    transition: all .4s;
+	}
+	.router-slid-enter, .router-slid-leave-active {
+	    transform: translate3d(2rem, 0, 0);
+	    opacity: 0;
 	}
 </style>

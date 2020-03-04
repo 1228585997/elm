@@ -7,7 +7,7 @@
           <van-icon name="search" class="search" />
         </router-link>
         <div class="msite_title">
-          <span class="title_text ellipsis">{{cityurl}}</span>
+          <span class="title_text ellipsis">{{names.address}}</span>
         </div>
         <div class="head_login">
           <router-link to="/login">
@@ -136,13 +136,14 @@ export default {
       geohash: "", //获取经纬度
       latitude: "", //纬度
       longitude: "", //经度
-      shoplist: [] //存放商铺列表
+      shoplist: [] ,//存放商铺列表
+	  names:''
     };
   },
   created() {
     //获取地址
-    this.cityurl = this.$route.query.address;
-    console.log(this.cityurl);
+    // this.cityurl = this.$route.query.address;
+    // // console.log(this.cityurl);
     this.geohash = this.$route.query.geohash;
     localStorage.geohash = JSON.stringify(this.geohash);
     //console.log(this.geohash)//获取经纬度
@@ -165,6 +166,11 @@ export default {
         console.log(data.data);
         this.shoplist = data.data;
       });
+	  //标题
+	  this.$http.get('https://elm.cangdu.org/v2/pois/' +this.$route.query.geohash+ '').then((data) => {
+	      console.log(data.data)
+	      this.names = data.data
+	     })
   },
   mounted() {
     setTimeout(() => {

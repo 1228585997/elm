@@ -1,5 +1,5 @@
 <template>
-	<div class="city_container">
+	<div class="city_container" v-loading="loading">
 		<!-- 头部 -->
 		<headtop>
 			<template v-slot:citytop>
@@ -69,6 +69,7 @@
 		},
 		data() {
 			return {
+				loading: true,
 				inputVaule: '', // 搜索地址
 				historytitle: true, // 默认显示搜索历史头部，点击搜索后隐藏
 				citylist: [], // 搜索城市列表
@@ -113,6 +114,11 @@
 			clearAll() {
 				remove('placeHistory')
 			}
+		},
+		mounted() {
+		  setTimeout(() => {
+		    this.loading = false;
+		  }, 1000);
 		}
 	}
 </script>
@@ -213,7 +219,7 @@
 		width: 100%;
 		height: 55px;
 	}
-
+	/* 设置input框字体大小 */
 	input::-webkit-input-placeholder {
 		font-size: 24px;
 	}

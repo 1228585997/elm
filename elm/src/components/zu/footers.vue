@@ -3,7 +3,7 @@
   <div class="footer">
     <router-view />
     <van-tabbar v-model="active" active-color="#3190e8" inactive-color="#000">
-      <van-tabbar-item icon="share" to="/shoplist/:id">外卖</van-tabbar-item>
+      <van-tabbar-item icon="share">外卖</van-tabbar-item>
       <van-tabbar-item icon="search" to="/shopsearch">搜索</van-tabbar-item>
       <van-tabbar-item icon="balance-list-o" to="/order">订单</van-tabbar-item>
       <van-tabbar-item icon="contact" to="/profile">我的</van-tabbar-item>
@@ -15,9 +15,15 @@
 export default {
   data(){
     return{
-      active:0
+      active:0,
+	  url:JSON.parse(localStorage.geohash)
     }
-  }
+  },
+ methods:{
+	 fn(){
+		 location.href=`#/shoplist/${this.url}`
+	 }
+ }
 };
 </script>
 

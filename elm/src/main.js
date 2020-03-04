@@ -35,8 +35,10 @@ import {
 	 CountDown,
 	 Checkbox, CheckboxGroup,
 	 SubmitBar,
-	 RadioGroup, Radio
+	 RadioGroup, Radio,
+	 Toast,
 } from 'vant';
+Vue.use(Toast);
 Vue.use(RadioGroup);
 Vue.use(Radio);
 Vue.use(SubmitBar)

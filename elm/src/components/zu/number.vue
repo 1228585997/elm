@@ -5,7 +5,6 @@
 		<button class='jia' @click="jia">+</button>
 	</div>
 </template>
-
 <script>
 	export default{
 		name:'number',

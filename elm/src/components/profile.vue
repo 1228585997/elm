@@ -84,6 +84,7 @@
 <script>
 import headtop from "./zu/headtop.vue";
 import footers from "./zu/footers.vue";
+import {mapState} from 'vuex'
 export default {
   name: "profile",
   components: {

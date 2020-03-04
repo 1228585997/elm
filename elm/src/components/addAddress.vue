@@ -12,7 +12,7 @@
       <div>
         <div class="content-name">
           <p>联系人</p>
-          <input type="text" placeholder="你的名字" />
+          <input type="text" placeholder="你的名字" v-model="name" />
           <br />
         </div>
         <div class="xuan">
@@ -27,33 +27,35 @@
         </div>
         <div class="content-name">
           <p>联系电话</p>
-          <input type="text" placeholder="你的手机号" class="name-input" />
+          <input type="text" placeholder="你的手机号" name="phone" class="name-input" v-model="phone" maxlength="11"/>
           <br />
         </div>
         <div class="content-name">
           <p>送餐地址</p>
           <router-link to="/confirmOrder/chooseAddress/addAddress/searchAddress">
-            <div class="school">小区/写字楼/学校等</div>
+            <input type="text" placeholder="请输入内容" v-model="url">
           </router-link>
           <router-view></router-view>
-          <input type="text" placeholder="详细地址（如门牌号等）" class="name-input" />
+          <input type="text" placeholder="详细地址（如门牌号等）" class="name-input" v-model="text"/>
           <br />
         </div>
         <div class="content-name">
           <p>标签</p>
-          <input type="text" placeholder="无/家/学校/公司" class="name-input" />
+          <input type="text" placeholder="无/家/学校/公司" class="name-input"  v-model="xuxiao"/>
           <br />
         </div>
       </div>
     </div>
+	
     <div class="sure-button">
-      <div class="btn">确定</div>
+      <div class="btn" @click="quern">确定</div>
     </div>
   </div>
 </template>
 
 <script>
 import headtop from "./zu/headtop.vue";
+import {mapState} from 'vuex'
 export default {
   name: "addAddress",
   components: {
@@ -61,9 +63,58 @@ export default {
   },
   data() {
     return {
-      radio: "1"
+      radio: "1",
+	  name:'',
+	  phone:'',
+	  url:'',
+	  text:'',
+	  xuxiao:''
     };
-  }
+  },
+  methods:{
+	  quern(){
+		  if(this.name!=''&&this.phone!=''&&this.url!=''&&this.text!=''&&this.xuxiao!=''){
+		       this.$http.post('http://elm.cangdu.org/v1/users/44104/addresses', {
+		       address: this.url,
+		       address_detail: this.text,
+		       name: this.name,
+		       phone: this.phone,
+		       tag: this.xuxiao,
+		       geohash: localStorage.geohash,
+		       phone_bk: "",
+		       poi_type: 0,
+		       sex: 1,
+		       tag_type: 1
+		      }).then((data) => {
+		       console.log(data.data)
+		      })
+		      setTimeout(()=>{
+		        location.href='#/confirmOrder/chooseAddress'
+		        window.onload()
+		       },1000)
+		      }else{
+		       alert('请将数据填写完整')
+		      }
+	  }
+  },
+  computed: {
+     btn() {
+      return this.$store.state.name;
+     },
+      //判断手机号码
+     PhoneNumber:function(){
+          return /^1\d{10}$/gi.test(this.phone)
+      }
+    },
+    watch:{
+		btn: function(a) {
+			console.log(a)
+			this.url=a
+			
+      //this.values = a
+     },
+     
+    }
 };
 </script>
 

@@ -41,7 +41,7 @@ Vue.use(VueRouter)
 const routes = [{
 		path: '/',
 		name: 'home',
-		component: home
+		component: home,
 	},
 	//城市列表
 	{
@@ -55,7 +55,10 @@ const routes = [{
 	{
 		path: '/shoplist/:id',
 		name: 'shoplist',
-		component: shoplist
+		component: shoplist,
+		meta:{
+			keepAlive:true//需要缓存
+		},
 	},
 	//食品分类列表
 	{
@@ -206,13 +209,20 @@ const routes = [{
 	{
 		path: '/shop/:id',
 		name: 'shop',
-		component: shop
+		component: shop,
+		meta:{
+			keepAlive:true//需要缓存
+		}
 	},
 	// 结算页面
 	{
 		path: '/confirmOrder',
 		name: 'confirmOrder',
 		component: confirmOrder,
+		//元信息
+		meta:{
+			keepAlive:true//需要缓存
+		},
 		children: [
 			// 确认订单
 			{
@@ -241,7 +251,7 @@ const routes = [{
 		name: 'login',
 		component: login
 	},
-	// //修改
+	 //修改
 	{
 		path: '/forget',
 		name: 'forget',
@@ -262,7 +272,8 @@ const routes = [{
 ]
 
 const router = new VueRouter({
-	routes
+	routes,
+	mode: 'history'
 })
 //全局导航守卫
 // router.beforeEach((to,from,next)=>{

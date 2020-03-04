@@ -2,9 +2,7 @@
 	<div>
 		<div class="content">
 			<div class="content-header" v-if="shop">
-				<router-link to="/shoplist/:id">
-					<van-icon name="arrow-left" class="left" />
-				</router-link>
+					<van-icon name="arrow-left" class="left" @click="$router.go(-1)"/>
 				<div class="content-header-left">
 					<img :src="'//elm.cangdu.org/img/'+shop.image_path" alt class="img" />
 				</div>
@@ -12,9 +10,7 @@
 					<h3>{{shop.name}}</h3>
 					<p>商家配送 / 分钟送达 / {{shop.piecewise_agent_fee.tips}}</p>
 					<p>公告：{{shop.promotion_info}}</p>
-					<router-link to="/shoplist/:id">
-						<van-icon name="arrow" />
-					</router-link>
+						<van-icon name="arrow" @click="$router.go(-1)"/>
 				</div>
 			</div>
 			<div class="content-text">
@@ -61,9 +57,10 @@
 							
 									</div>
 									<div style="width:40%;float:left">
-										<router-link to="/confirmOrder">
-											<button style="width:60%;height:60px;color:#fff;background:#37ca72;border:none;float:right;">去结算</button>
-										</router-link>
+										<!-- confirmOrder -->
+				
+											<button style="width:60%;height:60px;color:#fff;background:#37ca72;border:none;float:right;" @click="jiesuan">去结算</button>
+		
 										
 									</div>
 								</div>
@@ -106,7 +103,7 @@
 									</li>
 								</ul>
 							</div>
-							<div class="userp" v-for="item in arr">
+							<div class="userp" v-for="(item,index) in arr" :key="index">
 								<ul class="userplist clearfix">
 									<li>
 										{{item.username}}
@@ -139,6 +136,7 @@
 		},
 		data() {
 			return {
+				loading: true,
 				active: 0, //tab切换
 				shop_id: "", //传过来的id
 				shop: "",
@@ -146,13 +144,14 @@
 				type: 0 ,//判断
 				value:5, //星星
 				listarr:[] ,//评价
-				arr:[],//用户
+				arr:[],//存放数据
 				z_index:0
 			};
 		},
 		watch: {
 			shop_sort: {
 				handler(v1) {
+					console.log(v1)
 					this.arr = [];
 					v1.forEach(el => {
 						el.foods.forEach(item => {
@@ -175,6 +174,7 @@
 		created() {
 			console.log(this.$route.params.id);
 			this.shop_id = this.$route.params.id;
+			localStorage.shop_id=JSON.stringify(this.shop_id)
 			this.getshop();
 			this.details_shop();
 			//评价
@@ -200,6 +200,9 @@
 						this.shop = data.data;
 					});
 			},
+			jiesuan(){
+				this.$router.push('/confirmOrder')
+			},
 			// 详细数据
 			details_shop() {
 				this.$http
@@ -214,7 +217,7 @@
 			},
 			onSubmit() {
 
-			}
+			},
 			// addItem(item, ev) {
 			//   if (item.num) {
 			//     item.num = ev;
@@ -271,6 +274,10 @@
 .van-rate{
 	margin-top:10px;
 }
+.van-toast__loading {
+	background:#fff !important;
+	color:#fff !important;
+}
 .listarr{
 	width: 100%;
 }
@@ -283,6 +290,7 @@
 	background:#ebf5ff;
 	line-height:50px;
 	text-align:center;
+	overflow:hidden;
 	font-size:24px;
 	color:#919ca8;
 	float:left;

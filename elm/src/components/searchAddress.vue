@@ -19,8 +19,8 @@
       </div>
       <div v-if="search_arr">
         <router-link to="/confirmOrder/chooseAddress/addAddress">
-          <div v-for="(i,index) in search_arr" :key="index" class="search-res">
-            <h3>{{i.name}}</h3>
+          <div v-for="(i,index) in search_arr" :key="index" class="search-res"> 
+            <h3 @click="btn(i.name)">{{i.name}}</h3>
             <p>{{i.address}}</p>
           </div>
         </router-link>
@@ -55,7 +55,10 @@ export default {
           console.log(data.data);
           this.search_arr = data.data;
         });
-    }
+    },
+	btn(v){
+		this.$store.commit('dataname',v)
+	}
   }
 };
 </script>

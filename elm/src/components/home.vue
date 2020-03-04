@@ -39,7 +39,7 @@
 			<!-- 所有城市列表 -->
 			<div class="allcity clearfix">
 				<ul class="letter_classify clearfix">
-					<li class="letter_classify_li ellipsis" v-for="(value, key, index) in sortcity" :key="key">
+					<li class="letter_classify_li ellipsis" v-for="(value, key, index) in sortcity" :key="index">
 						<h4 class="city_title">{{key}}
 							<span v-if="index == 0">（按字母排序）</span>
 						</h4>
@@ -113,6 +113,11 @@
 				}
 				return sortobj
 			}
+		},
+		mounted() {
+		  setTimeout(() => {
+		    this.loading = false;
+		  }, 1000);
 		}
 	}
 </script>

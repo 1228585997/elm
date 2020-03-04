@@ -8,9 +8,7 @@
         <headtop>
           <!-- 头部组件 -->
           <template v-slot:payment>
-            <router-link to="/member">
-              <van-icon name="arrow-left" class="arrow-lefts" size="20px" />
-            </router-link>
+              <van-icon name="arrow-left" class="arrow-lefts" size="20px" @click="$router.go(-1)"/>
             <div class="title_head ellipsis title_head1">在线支付</div>
           </template>
         </headtop>
@@ -82,6 +80,9 @@ export default {
         message: "当前环境无法支付，请打开官方APP进行付款"
       }).then(() => {
         // on close
+		
+		// console.log(1)
+		location.href=`#/order`
       });
     }
   },
@@ -91,6 +92,7 @@ export default {
       message: "暂不开放支付功能"
     }).then(() => {
       // on close
+	  
     });
   }
 };
@@ -177,10 +179,9 @@ export default {
   font-size: 28px;
   color: #fff;
   text-align: center;
-  margin: 0 10px;
+  margin:40px 10px;
   line-height: 80px;
   border-radius: 6px;
-  margin-top: 10px;
   font-weight: 700;
 }
 </style>

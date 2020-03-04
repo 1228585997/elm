@@ -14,8 +14,8 @@
 			<ul class="clearfix list" v-if="listarr">
 				<li v-for="item in listarr">
 					<router-link :to="{name:'add',params:{name:item.name}}">
-						<p>{{item.name}}</p>
-						<p>{{item.address}}</p>
+							<p @click="go(item.name)">{{item.name}}</p>
+							<p>{{item.address}}</p>
 					</router-link>
 				</li>
 			</ul>
@@ -50,6 +50,10 @@
 					this.listarr=data.data
 					this.type=false
 				})
+			},
+			go(item){
+				//console.log(item)
+				this.$store.commit('adddata',item)
 			}
 		}
 		
